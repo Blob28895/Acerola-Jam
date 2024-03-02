@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private ParticleSystem groundParticles;
 	[SerializeField] private ParticleSystem wallParticles;
 	[SerializeField] private Collider2D playerCollider;
+	[SerializeField] private Animator animator;
 
 
 	private void Awake()
@@ -95,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
 			rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 			if (isGrounded && rb.velocity != Vector2.zero)
 			{
+				Debug.Log(rb.velocity);
 				groundParticles.emissionRate = groundEmissionRate;
 			}
 			else
@@ -117,11 +119,14 @@ public class PlayerMovement : MonoBehaviour
 			isWallSliding = true;
 			rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
 			wallParticles.emissionRate = wallEmissionRate;
+			animator.SetBool("WallSliding", isWallSliding);
 		}
 		else
 		{
 			isWallSliding = false;
 			wallParticles.emissionRate = 0;
+			animator.SetBool("WallSliding", isWallSliding);
+
 		}
 	}
 
