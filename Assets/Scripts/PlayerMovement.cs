@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
 	private float horizontal;
 	private bool isFacingRight = true;
-	
+
 	[Header("Movement Variables")]
 	[Tooltip("Constant speed the player moves")]
 	[SerializeField] private float speed = 8f;
@@ -33,11 +33,10 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float wallJumpingDuration = 0.4f;
 	[Tooltip("Max distance that the Wall check can be from a wall to allow a wall jump")]
 	[SerializeField] private float maxWallDistance = 0.2f;
-	
-	
+
+
 	[Header("References")]
 	[SerializeField] private Rigidbody2D rb;
-	[SerializeField] private Transform groundCheck;
 	[SerializeField] private LayerMask groundLayer;
 	[SerializeField] private Transform wallCheck;
 	[SerializeField] private LayerMask wallLayer;
@@ -54,26 +53,21 @@ public class PlayerMovement : MonoBehaviour
 	private void Update()
 	{
 
-		if(Input.GetKeyDown(KeyCode.Space))
-		{
-			Debug.Log("Jump start: " + gameObject.transform.position.y);
-		}
 		groundedLast = isGrounded;
 		boxCast();
-		if (groundedLast != isGrounded)
+		if (!isGrounded && groundedLast)
 		{
-			Debug.Log(isGrounded + ":" + gameObject.transform.position.y);
-
+			coyoteJumpTimer = coyoteTime;
 		}
 
 		horizontal = Input.GetAxisRaw("Horizontal");
 
-		if (Input.GetButtonDown("Jump") && isGrounded)
+		if (Input.GetButtonDown("Jump") && (isGrounded || coyoteJumpTimer > 0))
 		{
 			rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 		}
 
-		if (Input.GetButtonUp("Jump") && isGrounded/*rb.velocity.y > 0f*/)
+		if (Input.GetButtonUp("Jump") && isGrounded)
 		{
 			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
 		}
@@ -87,9 +81,10 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
+
 	private void FixedUpdate()
 	{
-
+		coyoteCountdown();
 
 		if (!isWallJumping)
 		{
@@ -190,4 +185,12 @@ public class PlayerMovement : MonoBehaviour
 		if (raycastHit.collider == null) { isGrounded = false; }
 		else { isGrounded = true; }
 	}
+
+	private void coyoteCountdown()
+	{
+        if (coyoteJumpTimer > 0)
+        {
+			coyoteJumpTimer -= Time.deltaTime;
+        }
+    }
 }
