@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 	private float wallJumpingDirection;
 	private float wallJumpingCounter;
 	private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+	private float groundEmissionRate;
 
 	[Header("Wall Jumping Variables")]
 	[Tooltip("Speed the player slides down the wall")]
@@ -34,7 +36,14 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private LayerMask groundLayer;
 	[SerializeField] private Transform wallCheck;
 	[SerializeField] private LayerMask wallLayer;
+	[SerializeField] private ParticleSystem groundParticles;
 
+
+	private void Awake()
+	{
+		groundEmissionRate = groundParticles.emissionRate;
+		groundParticles.emissionRate = 0;
+	}
 
 	private void Update()
 	{
@@ -64,6 +73,14 @@ public class PlayerMovement : MonoBehaviour
 		if (!isWallJumping)
 		{
 			rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+			if (IsGrounded() && rb.velocity != Vector2.zero)
+			{
+				groundParticles.emissionRate = groundEmissionRate;
+			}
+			else
+			{
+				groundParticles.emissionRate = 0;
+			}
 		}
 	}
 
