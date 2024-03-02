@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 	private float wallJumpingCounter;
 	private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 	private float groundEmissionRate;
+	private float wallEmissionRate;
 	private bool groundedLast = false;
 	private float coyoteJumpTimer = 0f;
 	private bool isGrounded = false;
@@ -41,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private Transform wallCheck;
 	[SerializeField] private LayerMask wallLayer;
 	[SerializeField] private ParticleSystem groundParticles;
+	[SerializeField] private ParticleSystem wallParticles;
 	[SerializeField] private Collider2D playerCollider;
 
 
@@ -48,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
 	{
 		groundEmissionRate = groundParticles.emissionRate;
 		groundParticles.emissionRate = 0;
+		wallEmissionRate = wallParticles.emissionRate;
+		wallParticles.emissionRate = 0;
 	}
 
 	private void Update()
@@ -112,10 +116,12 @@ public class PlayerMovement : MonoBehaviour
 		{
 			isWallSliding = true;
 			rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+			wallParticles.emissionRate = wallEmissionRate;
 		}
 		else
 		{
 			isWallSliding = false;
+			wallParticles.emissionRate = 0;
 		}
 	}
 
