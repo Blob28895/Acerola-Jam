@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			Flip();
 		}
-
+		Debug.Log(rb.velocity.y);
 		animator.SetFloat("yVelocity", rb.velocity.y);
 		animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
 		animator.SetBool("Grounded", isGrounded);
@@ -102,7 +102,6 @@ public class PlayerMovement : MonoBehaviour
 			rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 			if (isGrounded && rb.velocity != Vector2.zero)
 			{
-				Debug.Log(rb.velocity);
 				groundParticles.emissionRate = groundEmissionRate;
 			}
 			else
