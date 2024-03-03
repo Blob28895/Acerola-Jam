@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -84,13 +85,18 @@ public class PlayerMovement : MonoBehaviour
 		{
 			Flip();
 		}
+
+		animator.SetFloat("yVelocity", rb.velocity.y);
+		animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
+		animator.SetBool("Grounded", isGrounded);
+
 	}
 
 
 	private void FixedUpdate()
 	{
 		coyoteCountdown();
-
+		
 		if (!isWallJumping)
 		{
 			rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
