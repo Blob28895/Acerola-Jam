@@ -3308,8 +3308,12 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8447484967924412041, guid: 441acf43b42a07c4ca4b1729c39f7e2c, type: 3}
+      propertyPath: dashDuration
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447484967924412041, guid: 441acf43b42a07c4ca4b1729c39f7e2c, type: 3}
       propertyPath: jumpingPower
-      value: 20
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 8447484967924412041, guid: 441acf43b42a07c4ca4b1729c39f7e2c, type: 3}
       propertyPath: jumpReleaseSlow

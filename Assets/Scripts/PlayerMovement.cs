@@ -77,8 +77,12 @@ public class PlayerMovement : MonoBehaviour
 		groundedLast = isGrounded;
 		boxCast();
 		if (!isGrounded && groundedLast)
-		{
+		{ //on walking off a ledge
 			coyoteJumpTimer = coyoteTime;
+		}
+		if(isGrounded && !groundedLast)
+		{//On landing
+			dashCounter = 0f; //End the dash if one is happening
 		}
 		if(rb.velocity.x != 0)
 		{
