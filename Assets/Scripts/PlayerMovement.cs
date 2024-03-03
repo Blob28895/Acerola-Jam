@@ -68,7 +68,8 @@ public class PlayerMovement : MonoBehaviour
 
 		horizontal = Input.GetAxisRaw("Horizontal");
 
-		if (Input.GetButtonDown("Jump") && (isGrounded || coyoteJumpTimer > 0))
+		if (Input.GetButtonDown("Jump") && (isGrounded || coyoteJumpTimer > 0)
+			&& rb.velocity.y < 0.1f) //This last check is to check that the player isnt already moving up when the press the jump button. I shouldnt have to do this check, but for some reason if the player spams jump they can kind of double jump without it
 		{
 			rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 		}
