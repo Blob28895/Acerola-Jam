@@ -122,12 +122,12 @@ public class PlayerMovement : MonoBehaviour
 		{
 			if (dashCounter > 0f)
 			{
-				//animator.speed = dashingSpeed / speed;
+				animator.speed = dashingSpeed / speed;
 				rb.velocity = new Vector2(horizontal * dashingSpeed, rb.velocity.y);
 			}
 			else
 			{
-				//animator.speed = 1f;
+				animator.speed = 1f;
 				rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 			}
 
