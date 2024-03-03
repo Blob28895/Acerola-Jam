@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.XR;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float jumpingPower = 16f;
 	[Tooltip("Amount of time after falling off a ledge that youre allowed to jump")]
 	[SerializeField] private float coyoteTime = 0.1f;
+	[Tooltip("Applied Velocity of dashing")]
+	[SerializeField] private float dashingSpeed = 16f;
+	[Tooltip("How long the dash lasts")]
+	[SerializeField] private float dashDuration = 0.5f;
+	[Tooltip("Time between dashes")]
+	[SerializeField] private float dashCooldown = 1f;
 
 	private bool isWallSliding;
 	private bool isWallJumping;
@@ -25,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 	private bool groundedLast = false;
 	private float coyoteJumpTimer = 0f;
 	private bool isGrounded = false;
+	private float dashCounter = 0f;
+	private float dashCooldownTimer = 0f;
 
 	[Header("Wall Jumping Variables")]
 	[Tooltip("Speed the player slides down the wall")]
@@ -65,8 +74,19 @@ public class PlayerMovement : MonoBehaviour
 		{
 			coyoteJumpTimer = coyoteTime;
 		}
+		if(rb.velocity.x != 0)
+		{
+		Debug.Log(rb.velocity.x);
 
+		}
+		if(Input.GetKeyDown(KeyCode.LeftShift) && isGrounded && dashCooldownTimer <= 0 && dashCounter  <= 0)
+		{
+			StartDash();
+		}
+		
+		
 		horizontal = Input.GetAxisRaw("Horizontal");
+		
 
 		if (Input.GetButtonDown("Jump") && (isGrounded || coyoteJumpTimer > 0)
 			&& rb.velocity.y < 0.1f) //This last check is to check that the player isnt already moving up when the press the jump button. I shouldnt have to do this check, but for some reason if the player spams jump they can kind of double jump without it
@@ -74,10 +94,10 @@ public class PlayerMovement : MonoBehaviour
 			rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 		}
 
-		if (Input.GetButtonUp("Jump") && isGrounded)
+		/*if (Input.GetButtonUp("Jump") && isGrounded)
 		{
 			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-		}
+		}*/
 
 		WallSlide();
 		WallJump();
@@ -86,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
 		{
 			Flip();
 		}
-		Debug.Log(rb.velocity.y);
 		animator.SetFloat("yVelocity", rb.velocity.y);
 		animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
 		animator.SetBool("Grounded", isGrounded);
@@ -97,10 +116,21 @@ public class PlayerMovement : MonoBehaviour
 	private void FixedUpdate()
 	{
 		coyoteCountdown();
+		dashCountdown();
 		
 		if (!isWallJumping)
 		{
-			rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+			if (dashCounter > 0f)
+			{
+				//animator.speed = dashingSpeed / speed;
+				rb.velocity = new Vector2(horizontal * dashingSpeed, rb.velocity.y);
+			}
+			else
+			{
+				//animator.speed = 1f;
+				rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+			}
+
 			if (isGrounded && rb.velocity != Vector2.zero)
 			{
 				groundParticles.emissionRate = groundEmissionRate;
@@ -182,7 +212,10 @@ public class PlayerMovement : MonoBehaviour
 			Vector3 localScale = transform.localScale;
 			localScale.x *= -1f;
 			transform.localScale = localScale;
+			dashCounter = 0f;
 		}
+		
+		
 	}
 
 	private void boxCast()
@@ -210,4 +243,21 @@ public class PlayerMovement : MonoBehaviour
 			coyoteJumpTimer -= Time.deltaTime;
         }
     }
+
+	private void dashCountdown()
+	{
+		if (dashCounter > 0)
+		{
+			dashCounter -= Time.deltaTime;
+		}
+		if(dashCooldownTimer > 0)
+		{
+			dashCooldownTimer -= Time.deltaTime;
+		}
+	}
+	private void StartDash()
+	{
+		dashCooldownTimer = dashCooldown;
+		dashCounter = dashDuration;
+	}
 }
