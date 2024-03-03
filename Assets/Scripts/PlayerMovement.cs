@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float speed = 8f;
 	[Tooltip("Amount of force to be applied to your vertical velocity when jumping")]
 	[SerializeField] private float jumpingPower = 16f;
+	[Tooltip("How Fast the player's jump will stop rising when they release spacebar. Higher numbers mean a faster slow, 0 results in a divide by 0, and decimals result in the player increasing in force")]
+	[SerializeField] private float jumpReleaseSlow = 2f;
 	[Tooltip("Amount of time after falling off a ledge that youre allowed to jump")]
 	[SerializeField] private float coyoteTime = 0.1f;
 	[Tooltip("Applied Velocity of dashing")]
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 	private float dashCounter = 0f;
 	private float dashCooldownTimer = 0f;
 	private bool jumpDashing = false;
+	private bool jumpReleased = false;
 
 	[Header("Wall Jumping Variables")]
 	[Tooltip("Speed the player slides down the wall")]
@@ -100,6 +103,10 @@ public class PlayerMovement : MonoBehaviour
 				dashCounter = dashDuration;//Let the player jump while dashing to continue their dash
 			}
 		}
+		if(Input.GetButtonUp("Jump") && rb.velocity.y > 0.01f) //User 0.01 instead of 0 cause unity rigid bodies are weird
+		{ //If statement within the update to make sure we get the player's input
+			jumpReleased = true;
+		}
 
 
 		WallSlide();
@@ -121,6 +128,11 @@ public class PlayerMovement : MonoBehaviour
 		coyoteCountdown();
 		dashCountdown();
 		
+		if(jumpReleased && rb.velocity.y > 0.01f)
+		{//Actual jump release slow within FixedUpdate to make sure that the slow is consistent across different frame rates
+			rb.velocity = new Vector2 (rb.velocity.x, rb.velocity.y / jumpReleaseSlow);
+		}
+
 		if (!isWallJumping)
 		{
 			if (dashCounter > 0f)
@@ -243,7 +255,10 @@ public class PlayerMovement : MonoBehaviour
 		
 
 		if (raycastHit.collider == null) { isGrounded = false; }
-		else { isGrounded = true; }
+		else { 
+			isGrounded = true;
+			jumpReleased = false; //reset this variable for the next jump
+		}
 	}
 
 	private void coyoteCountdown()
