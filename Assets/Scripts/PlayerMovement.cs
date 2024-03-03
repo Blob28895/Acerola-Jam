@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float dashDuration = 0.5f;
 	[Tooltip("Time between dashes")]
 	[SerializeField] private float dashCooldown = 1f;
+	[Tooltip("Multiplier of how much faster the dash speed is when dash jumping")]
+	[SerializeField] private float jumpDashMultiplier = 1.25f;
 
 	private bool isWallSliding;
 	private bool isWallJumping;
@@ -34,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 	private bool isGrounded = false;
 	private float dashCounter = 0f;
 	private float dashCooldownTimer = 0f;
+	private bool jumpDashing = false;
 
 	[Header("Wall Jumping Variables")]
 	[Tooltip("Speed the player slides down the wall")]
@@ -67,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
-
+		
 		groundedLast = isGrounded;
 		boxCast();
 		if (!isGrounded && groundedLast)
@@ -76,8 +79,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		if(rb.velocity.x != 0)
 		{
-		Debug.Log(rb.velocity.x);
-
+			Debug.Log(rb.velocity.x);
 		}
 		if(Input.GetKeyDown(KeyCode.LeftShift) && isGrounded && dashCooldownTimer <= 0 && dashCounter  <= 0)
 		{
@@ -92,12 +94,13 @@ public class PlayerMovement : MonoBehaviour
 			&& rb.velocity.y < 0.1f) //This last check is to check that the player isnt already moving up when the press the jump button. I shouldnt have to do this check, but for some reason if the player spams jump they can kind of double jump without it
 		{
 			rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+			if (dashCounter > 0f)
+			{
+				jumpDashing = true;
+				dashCounter = dashDuration;//Let the player jump while dashing to continue their dash
+			}
 		}
 
-		/*if (Input.GetButtonUp("Jump") && isGrounded)
-		{
-			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-		}*/
 
 		WallSlide();
 		WallJump();
@@ -123,7 +126,14 @@ public class PlayerMovement : MonoBehaviour
 			if (dashCounter > 0f)
 			{
 				animator.speed = dashingSpeed / speed;
-				rb.velocity = new Vector2(horizontal * dashingSpeed, rb.velocity.y);
+				if(jumpDashing)
+				{
+					rb.velocity = new Vector2(horizontal * dashingSpeed * jumpDashMultiplier, rb.velocity.y);
+				}
+				else
+				{
+					rb.velocity = new Vector2(horizontal * dashingSpeed, rb.velocity.y);
+				}
 			}
 			else
 			{
@@ -249,6 +259,10 @@ public class PlayerMovement : MonoBehaviour
 		if (dashCounter > 0)
 		{
 			dashCounter -= Time.deltaTime;
+		}
+		else
+		{
+			jumpDashing = false;
 		}
 		if(dashCooldownTimer > 0)
 		{
