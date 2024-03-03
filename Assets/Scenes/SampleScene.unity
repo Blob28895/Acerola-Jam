@@ -3118,7 +3118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1714897275
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3318,6 +3318,10 @@ PrefabInstance:
     - target: {fileID: 8447484967924412041, guid: 441acf43b42a07c4ca4b1729c39f7e2c, type: 3}
       propertyPath: jumpReleaseSlow
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447484967924412041, guid: 441acf43b42a07c4ca4b1729c39f7e2c, type: 3}
+      propertyPath: wallJumpingDuration
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

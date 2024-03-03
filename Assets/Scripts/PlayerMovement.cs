@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
 		if (!isWallJumping)
 		{
 			if (dashCounter > 0f)
-			{
+			{ //code for dashing
 				animator.speed = dashingSpeed / speed;
 				if(jumpDashing)
 				{
@@ -152,11 +152,12 @@ public class PlayerMovement : MonoBehaviour
 				}
 			}
 			else
-			{
+			{//Regular movement code
 				animator.speed = 1f;
 				rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 			}
 
+			//Ground particles Code
 			if (isGrounded && rb.velocity != Vector2.zero)
 			{
 				groundParticles.emissionRate = groundEmissionRate;
@@ -178,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (IsWalled() && !isGrounded && horizontal != 0f)
 		{
+			jumpReleased = false; //We have to reset the players jump release if they are on a wall
 			isWallSliding = true;
 			rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
 			wallParticles.emissionRate = wallEmissionRate;
