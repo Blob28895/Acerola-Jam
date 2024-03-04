@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
 	private bool isWallJumping;
 	private float wallJumpingDirection;
 	private float wallJumpingCounter;
-	private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 	private float groundEmissionRate;
 	private float wallEmissionRate;
 	private bool groundedLast = false;
@@ -50,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float wallJumpingDuration = 0.4f;
 	[Tooltip("Max distance that the Wall check can be from a wall to allow a wall jump")]
 	[SerializeField] private float maxWallDistance = 0.2f;
+	[Tooltip("This Vector controls the angle and power that the player comes off the wall with")]
+	[SerializeField]private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
 
 	[Header("References")]
@@ -201,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
 			isWallJumping = false;
 			wallJumpingDirection = -transform.localScale.x; //direction we are facing
 			wallJumpingCounter = wallJumpingTime;
-
+			dashCounter = 0f; // for good measure
 			CancelInvoke(nameof(StopWallJumping));
 		}
 		else
