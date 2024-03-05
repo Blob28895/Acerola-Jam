@@ -294,5 +294,10 @@ public class PlayerMovement : MonoBehaviour
 		dashCounter = dashDuration;
 	}
 
+	public bool isDashing()
+	{
+		return (dashCounter > 0);
+	}
+
 
 }
