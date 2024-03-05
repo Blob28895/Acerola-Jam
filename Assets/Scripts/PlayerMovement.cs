@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 	private float dashCooldownTimer = 0f;
 	private bool jumpDashing = false;
 	private bool jumpReleased = false;
+	
 
 	[Header("Wall Jumping Variables")]
 	[Tooltip("Speed the player slides down the wall")]
@@ -84,10 +85,6 @@ public class PlayerMovement : MonoBehaviour
 		if(isGrounded && !groundedLast)
 		{//On landing
 			dashCounter = 0f; //End the dash if one is happening
-		}
-		if(rb.velocity.x != 0)
-		{
-			Debug.Log(rb.velocity.x);
 		}
 		if(Input.GetKeyDown(KeyCode.LeftShift) && isGrounded && dashCooldownTimer <= 0 && dashCounter  <= 0)
 		{
@@ -296,4 +293,6 @@ public class PlayerMovement : MonoBehaviour
 		dashCooldownTimer = dashCooldown;
 		dashCounter = dashDuration;
 	}
+
+
 }

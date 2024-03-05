@@ -4827,7 +4827,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -306254719
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -9657,7 +9657,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -306254719
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: -1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -9705,6 +9705,7 @@ GameObject:
   - component: {fileID: 4879035566624855202}
   - component: {fileID: 5121288919561878439}
   - component: {fileID: 1415076198225104467}
+  - component: {fileID: 3506347200411196732}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -9769,7 +9770,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -306254719
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1612855909, guid: 8c264b8a22769f943b9d7f626420c8c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9795,12 +9796,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  jumpingPower: 18
+  jumpingPower: 23
+  jumpReleaseSlow: 1.5
   coyoteTime: 0.1
+  dashingSpeed: 16
+  dashDuration: 0.75
+  dashCooldown: 1
+  jumpDashMultiplier: 1.25
   wallSlidingSpeed: 2.5
   wallJumpingTime: 0.2
-  wallJumpingDuration: 0.1
+  wallJumpingDuration: 0.4
   maxWallDistance: 0.1
+  wallJumpingPower: {x: 11, y: 19}
   rb: {fileID: 4879035566624855202}
   groundLayer:
     serializedVersion: 2
@@ -9906,3 +9913,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3506347200411196732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6508764947282598306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f78acc7ec985a4c9937bf8ef8540c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
