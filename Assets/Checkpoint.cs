@@ -7,12 +7,18 @@ public class Checkpoint : MonoBehaviour
 {
 	private GameObject[] checkpoints;
 	private bool activated = false;
+	private float particleEmissionRate;
 
+	[Tooltip("How long the checkpoint activation particles are active")]
+	[SerializeField] private float particleEmissionDuration;
 	[SerializeField] private Animator animator;
+	[SerializeField] private ParticleSystem particles;
 
-	private void Start()
+	private void Awake()
 	{
 		checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
+		particleEmissionRate = particles.emissionRate;
+		particles.emissionRate = 0f;
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -28,6 +34,7 @@ public class Checkpoint : MonoBehaviour
 		{
 			activated = true;
 			animator.SetTrigger("Activate");
+			StartCoroutine(activateParticles());
 			foreach (GameObject go in checkpoints)
 			{
 				if (go != gameObject) {
@@ -47,5 +54,12 @@ public class Checkpoint : MonoBehaviour
 	public bool isActivated()
 	{
 		return activated;
-	} 
+	}
+
+	private IEnumerator activateParticles()
+	{
+		particles.emissionRate = particleEmissionRate;
+		yield return new WaitForSeconds(particleEmissionDuration);
+		particles.emissionRate = 0;
+	}
 }
