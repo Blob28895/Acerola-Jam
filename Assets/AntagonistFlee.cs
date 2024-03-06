@@ -26,7 +26,7 @@ public class AntagonistFlee : MonoBehaviour
 		particles.Play();
 		spriteRenderer.enabled = false;
 		yield return new WaitForSeconds(0.5f);
-		particles.Stop();
+		particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 	}
 
 }
