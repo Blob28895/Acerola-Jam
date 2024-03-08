@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float speed = 8f;
 	[Tooltip("Amount of force to be applied to your vertical velocity when jumping")]
 	[SerializeField] private float jumpingPower = 16f;
+	[Tooltip("How many times the player is allowed to jump midair, the grounded jump is not included here")]
+	[SerializeField] private int midairJumps = 0;
 	[Tooltip("How Fast the player's jump will stop rising when they release spacebar. Higher numbers mean a faster slow, 0 results in a divide by 0, and decimals result in the player increasing in force")]
 	[SerializeField] private float jumpReleaseSlow = 2f;
 	[Tooltip("Amount of time after falling off a ledge that youre allowed to jump")]
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 	private float dashCooldownTimer = 0f;
 	private bool jumpDashing = false;
 	private bool jumpReleased = false;
+	private int midairJumpsAvailable;
 	
 
 	[Header("Wall Jumping Variables")]
@@ -95,10 +98,16 @@ public class PlayerMovement : MonoBehaviour
 		horizontal = Input.GetAxisRaw("Horizontal");
 		
 
-		if (Input.GetButtonDown("Jump") && (isGrounded || coyoteJumpTimer > 0)
-			&& rb.velocity.y < 0.1f) //This last check is to check that the player isnt already moving up when the press the jump button. I shouldnt have to do this check, but for some reason if the player spams jump they can kind of double jump without it
+		if (Input.GetButtonDown("Jump") && canJump())
 		{
+			//Debug.Log("Jump");
 			rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+			jumpReleased = false;
+
+			if (!isGrounded)
+			{
+				midairJumpsAvailable -= 1;
+			}
 			if (dashCounter > 0f)
 			{
 				jumpDashing = true;
@@ -133,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
 		if(jumpReleased && rb.velocity.y > 0.01f)
 		{//Actual jump release slow within FixedUpdate to make sure that the slow is consistent across different frame rates
 			rb.velocity = new Vector2 (rb.velocity.x, rb.velocity.y / jumpReleaseSlow);
+			Debug.Log(midairJumpsAvailable + ":slowing");
 		}
 
 		if (!isWallJumping)
@@ -262,6 +272,7 @@ public class PlayerMovement : MonoBehaviour
 		else { 
 			isGrounded = true;
 			jumpReleased = false; //reset this variable for the next jump
+			midairJumpsAvailable = midairJumps;
 		}
 	}
 
@@ -299,5 +310,14 @@ public class PlayerMovement : MonoBehaviour
 		return (dashCounter > 0);
 	}
 
+	private bool canJump()
+	{
+		return midairJumps == 0 && (((isGrounded || midairJumpsAvailable > 0) || coyoteJumpTimer > 0) && rb.velocity.y < 0.1f ) || //do the ground velocity check only without double jumps
+			   midairJumps > 0 && ((isGrounded || midairJumpsAvailable > 0) || coyoteJumpTimer > 0); //if you have double jumps let this happen
+	}
+	public void setMidairJumps(int x)
+	{
+		midairJumps = x;
+	}
 
 }

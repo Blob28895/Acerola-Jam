@@ -12876,6 +12876,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8447484967924412041, guid: 441acf43b42a07c4ca4b1729c39f7e2c, type: 3}
+      propertyPath: midairJumps
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
