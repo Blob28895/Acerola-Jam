@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 			rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 			jumpReleased = false;
 
-			if (!isGrounded)
+			if (!isGrounded && !isWallSliding)
 			{
 				midairJumpsAvailable -= 1;
 			}
