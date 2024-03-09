@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements.Experimental;
 using static Dialogue;
+using static UnityEngine.ParticleSystem;
 
 public class Dialogue : MonoBehaviour
 {
@@ -29,9 +30,11 @@ public class Dialogue : MonoBehaviour
 	private string currentMessage;
 	private bool isTalking = false;
 	private bool dialogueFinished = false; //Im putting this in here for my Acerola jam submission but if you ever want to be able to talk to something multiple times without reloading the scene this will break it
+	private PlayerMovement player;
 
 	[Header("References")]
-	private PlayerMovement player;
+	[SerializeField] private ParticleSystem particles;
+	[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private GameObject playerDialogueBox;
 	[SerializeField] private TextMeshProUGUI playerMessage;
 	[SerializeField] private GameObject enemyDialogueBox;
@@ -45,9 +48,13 @@ public class Dialogue : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("Player"))
+		if (collision.CompareTag("Player") && spriteRenderer.enabled)
 		{
-
+			if(lines.Length == 0)
+			{
+				StartCoroutine(flee());
+				return;
+			}
 			if (dialogueFinished) { return; }
 			player = collision.gameObject.GetComponent<PlayerMovement>();
 			player.setCanMove(false);
@@ -64,6 +71,11 @@ public class Dialogue : MonoBehaviour
 		{
 			nextLine();
 		}
+	}
+
+	private void Awake()
+	{
+		particles.Stop();
 	}
 
 	// Start is called before the first frame update
@@ -162,6 +174,7 @@ public class Dialogue : MonoBehaviour
 		speakerMessage.text = "";
 		isTalking = false;
 		dialogueFinished = true;
+		StartCoroutine(flee());
 
 	}
 	IEnumerator Type(TextMeshProUGUI textDisplay, string sentence)
@@ -192,5 +205,13 @@ public class Dialogue : MonoBehaviour
 	public void nextLine()
 	{
 		Speak(lines[currentLine]);
+	}
+
+	private IEnumerator flee()
+	{
+		particles.Play();
+		spriteRenderer.enabled = false;
+		yield return new WaitForSeconds(0.5f);
+		particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 	}
 }

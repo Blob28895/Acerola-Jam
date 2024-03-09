@@ -292,6 +292,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0955a88584b2d14292f30836cc67eb3, type: 3}
+--- !u!1001 &627322942
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5330658236336761236, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.40000153
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330658236336761236, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330658236336761236, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.09072851
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330658236336761236, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330658236336761236, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330658236336761236, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330658236336761236, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330658236336761236, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330658236336761236, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330658236336761236, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831299183903339629, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831299183903339629, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395132767076270206, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_Name
+      value: Antagonist Decoy Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395132767076270206, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1528621830808714749, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2579519870526227088, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1657413564}
+  m_SourcePrefab: {fileID: 100100000, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
 --- !u!1 &643012491
 GameObject:
   m_ObjectHideFlags: 0
@@ -56241,6 +56314,75 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1657413562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2579519870526227088, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+  m_PrefabInstance: {fileID: 627322942}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1657413564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657413562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6048ebb9ef7dcb4ab7658a4bbdf0fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 1657413567}
+  spriteRenderer: {fileID: 1657413569}
+  playerDialogueBox: {fileID: 5744984791218437267}
+  playerMessage: {fileID: 5744984791218437266}
+  enemyDialogueBox: {fileID: 5744984791218437269}
+  enemyMessage: {fileID: 5744984791218437268}
+  typingSpeed: 0.02
+  lines:
+  - speaker: 0
+    line: What? What is this place? Where am I?
+  - speaker: 1
+    line: Of all the words that exist in your language, the one that I would say
+      most accurately defines this place is Aberration.
+  - speaker: 0
+    line: "What? I\u2019ve never even heard of that word, and who are you?"
+  - speaker: 1
+    line: I am the one that summoned you here.
+  - speaker: 0
+    line: But why? What could I have done to deserve being put here?
+  - speaker: 1
+    line: You have done nothing wrong, but this place, and myself, need humans to
+      keep ourselves alive. Your life force is necessary for us.
+  - speaker: 0
+    line: So you brought me here to die!?
+  - speaker: 1
+    line: In a manner of speaking, yes. As you spend time here you will slowly become
+      a part of this place.
+  - speaker: 0
+    line: You as an individual will no longer exist, but you will live on as an extension
+      of the aberration.
+  - speaker: 0
+    line: What?! What if I destroy this place first? What if I destroy you first?
+  - speaker: 1
+    line: Strange that all humans come to that conclusion at the same point in my
+      explanation.
+  - speaker: 1
+    line: "Theoretically, If I was to die this place would fall eventually, but at
+      that point I wouldn\u2019t be around to see it, so I can\u2019t say for sure
+      what would happen."
+  - speaker: 1
+    line: I will offer you the same deal I have offered countless others. Catch me,
+      and you will discover what the outcome will be.
+--- !u!198 &1657413567 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3724697710250652405, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+  m_PrefabInstance: {fileID: 627322942}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1657413569 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4299118943568125825, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+  m_PrefabInstance: {fileID: 627322942}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1714897274
 GameObject:
   m_ObjectHideFlags: 0
@@ -56418,6 +56560,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue Antagonist
       objectReference: {fileID: 0}
+    - target: {fileID: 5043420647717452142, guid: 7621474ee2963ff43adf1099ec9c6de7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7187142711594088242, guid: 7621474ee2963ff43adf1099ec9c6de7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.29
@@ -56563,7 +56709,7 @@ PrefabInstance:
     - target: {fileID: 1921846462400290990, guid: fc84559e7df36ec4f94cad2bda88addf, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: 808292da19f47264ea3f06f7ed2fabcf, type: 2}
     - target: {fileID: 1921846462400290990, guid: fc84559e7df36ec4f94cad2bda88addf, type: 3}
       propertyPath: m_fontSizeBase
       value: 20
@@ -56571,7 +56717,7 @@ PrefabInstance:
     - target: {fileID: 1921846462400290990, guid: fc84559e7df36ec4f94cad2bda88addf, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -2470338506515709130, guid: 808292da19f47264ea3f06f7ed2fabcf, type: 2}
     - target: {fileID: 3066559241318033400, guid: fc84559e7df36ec4f94cad2bda88addf, type: 3}
       propertyPath: m_Name
       value: Player Text Box
@@ -56855,3 +57001,4 @@ SceneRoots:
   - {fileID: 3144493702672534655}
   - {fileID: 174602468}
   - {fileID: 940843948}
+  - {fileID: 627322942}
