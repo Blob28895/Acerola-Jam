@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 	private float horizontal;
 	private bool isFacingRight = true;
+	private bool canMove = true;
 
 	[Header("Movement Variables")]
 	[Tooltip("Constant speed the player moves")]
@@ -78,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
-		
+		if (!canMove) { return; }
 		groundedLast = isGrounded;
 		boxCast();
 		if (!isGrounded && groundedLast)
@@ -138,8 +139,20 @@ public class PlayerMovement : MonoBehaviour
 	{
 		coyoteCountdown();
 		dashCountdown();
-		
-		if(jumpReleased && rb.velocity.y > 0.01f)
+
+		//Ground particles Code
+		if (isGrounded && rb.velocity != Vector2.zero)
+		{
+			groundParticles.emissionRate = groundEmissionRate;
+		}
+		else
+		{
+			groundParticles.emissionRate = 0;
+		}
+
+		if (!canMove) { return; }
+
+		if (jumpReleased && rb.velocity.y > 0.01f)
 		{//Actual jump release slow within FixedUpdate to make sure that the slow is consistent across different frame rates
 			rb.velocity = new Vector2 (rb.velocity.x, rb.velocity.y / jumpReleaseSlow);
 			Debug.Log(midairJumpsAvailable + ":slowing");
@@ -165,15 +178,7 @@ public class PlayerMovement : MonoBehaviour
 				rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 			}
 
-			//Ground particles Code
-			if (isGrounded && rb.velocity != Vector2.zero)
-			{
-				groundParticles.emissionRate = groundEmissionRate;
-			}
-			else
-			{
-				groundParticles.emissionRate = 0;
-			}
+
 		}
 	}
 
@@ -319,5 +324,13 @@ public class PlayerMovement : MonoBehaviour
 	{
 		midairJumps = x;
 	}
+	public void setCanMove(bool b)
+	{
+		canMove = b;
+		rb.velocity = Vector3.zero;
+		animator.SetFloat("yVelocity", rb.velocity.y);
+		animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
+		animator.SetBool("Grounded", isGrounded);
 
+	}
 }
