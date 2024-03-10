@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 8204250127096758580}
   - component: {fileID: 1391862619139026568}
   m_Layer: 5
-  m_Name: Speech Box
+  m_Name: Player speech Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9071547503865074883
 RectTransform:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 485130593793848717}
   - component: {fileID: 217097324067756195}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Enemy Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,12 +164,12 @@ GameObject:
   - component: {fileID: 5155363619397277124}
   - component: {fileID: 3640408089111052422}
   m_Layer: 5
-  m_Name: Speech Box (1)
+  m_Name: Enemy Speech Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4973709381733552842
 RectTransform:
   m_ObjectHideFlags: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 6107660677430948929}
   - component: {fileID: 1921846462400290990}
   m_Layer: 5
-  m_Name: Text Box
+  m_Name: Player Text Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,10 +294,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What did you say!
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d2ccd94ec02335141b451ae996f22feb, type: 2}
-  m_sharedMaterial: {fileID: 8367035734653971030, guid: d2ccd94ec02335141b451ae996f22feb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 808292da19f47264ea3f06f7ed2fabcf, type: 2}
+  m_sharedMaterial: {fileID: -2470338506515709130, guid: 808292da19f47264ea3f06f7ed2fabcf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -321,8 +321,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 5914736881492214675}
   - component: {fileID: 633124416129986430}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Player Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 3128465716807057394}
   - component: {fileID: 6191920071569148770}
   m_Layer: 5
-  m_Name: Text Box
+  m_Name: Enemy Text Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What did you say!
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 808292da19f47264ea3f06f7ed2fabcf, type: 2}
   m_sharedMaterial: {fileID: -2470338506515709130, guid: 808292da19f47264ea3f06f7ed2fabcf, type: 2}
@@ -633,8 +633,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
