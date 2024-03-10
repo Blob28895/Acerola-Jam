@@ -96907,7 +96907,7 @@ GameObject:
   - component: {fileID: 1819666927}
   - component: {fileID: 1819666926}
   - component: {fileID: 1819666925}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap_Lethal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

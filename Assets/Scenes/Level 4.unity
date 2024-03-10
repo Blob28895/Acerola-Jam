@@ -69084,6 +69084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6508764947282598306, guid: 441acf43b42a07c4ca4b1729c39f7e2c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8447484967924412041, guid: 441acf43b42a07c4ca4b1729c39f7e2c, type: 3}
       propertyPath: midairJumps
       value: 1
@@ -69410,7 +69414,7 @@ GameObject:
   - component: {fileID: 1819666927}
   - component: {fileID: 1819666926}
   - component: {fileID: 1819666925}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap_Lethal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69459,7 +69463,7 @@ CompositeCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -69747,7 +69751,7 @@ TilemapCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
