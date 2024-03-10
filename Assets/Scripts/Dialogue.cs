@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements.Experimental;
 using static Dialogue;
 using static UnityEngine.ParticleSystem;
+using UnityEngine.SceneManagement;
 
 public class Dialogue : MonoBehaviour
 {
@@ -175,6 +176,12 @@ public class Dialogue : MonoBehaviour
 		isTalking = false;
 		dialogueFinished = true;
 		StartCoroutine(flee());
+
+		//This if statement and function is specific to "Where?"
+		if(SceneManager.GetActiveScene().name == "Level 4")
+		{
+			GetComponent<ReverseRun>().StartReverseRun();
+		}
 
 	}
 	IEnumerator Type(TextMeshProUGUI textDisplay, string sentence)

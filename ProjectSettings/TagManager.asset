@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Checkpoint
+  - Spawn
+  - Transition
   layers:
   - Default
   - TransparentFX

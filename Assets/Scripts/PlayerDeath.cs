@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-    [SerializeField] private Vector3 startPosition;
+    private Vector3 startPosition;
     // Start is called before the first frame update
     void Start()
     {
-        startPosition = transform.position;
+		startPosition = gameObject.GetComponent<PlayerProgression>().getStartPosition().position;
+		gameObject.transform.position = startPosition;
     }
 
 	public void Die()

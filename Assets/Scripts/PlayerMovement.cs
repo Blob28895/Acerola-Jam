@@ -333,4 +333,12 @@ public class PlayerMovement : MonoBehaviour
 		animator.SetBool("Grounded", isGrounded);
 
 	}
+
+	//This function is exclusive to "Where?"
+	public void growWings()
+	{
+		midairJumps = 1;
+		midairJumpsAvailable = 1;
+		PlayerProgression.canDoubleJump = true;
+	}
 }
