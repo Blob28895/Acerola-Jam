@@ -75,6 +75,11 @@ public class PlayerMovement : MonoBehaviour
 		groundParticles.emissionRate = 0;
 		wallEmissionRate = wallParticles.emissionRate;
 		wallParticles.emissionRate = 0;
+		if(PlayerProgression.canDoubleJump)
+		{
+			midairJumpsAvailable = 1;
+			midairJumps = 1;
+		}
 	}
 
 	private void Update()
@@ -105,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 			rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 			jumpReleased = false;
 
-			if (!isGrounded && !isWallSliding)
+			if (!isGrounded && !isWallSliding && coyoteJumpTimer <= 0)
 			{
 				midairJumpsAvailable -= 1;
 			}

@@ -5,22 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class PlayerProgression : MonoBehaviour
 {
-	[Tooltip("Boolean for if the player is able to break through branches or not. If they are, the player should have horns")]
-	[SerializeField] public static bool canBreakBranches;
-	[SerializeField] public static bool canDoubleJump;
-
-	[SerializeField] private PlayerMovement playerMovement;
-
 	private Transform startPosition;
+	public static bool canBreakBranches;
+	public static bool canDoubleJump;
+
+	[Header("References")]
+	[SerializeField] private PlayerMovement playerMovement;
+	[SerializeField] private GameObject horns;
+	[SerializeField] private GameObject wings;
+
 
 	private void Awake()
 	{
 		if(SceneManager.GetActiveScene().name == "Level 3")
 		{
-			canBreakBranches = true;
+			canBreakBranches = true; //This variable starts as false and will just become true when you start level 3
 		}
 		startPosition = GameObject.FindGameObjectWithTag("Spawn").transform;
 		Debug.Log(startPosition);
+
+		//If we have unlocked either of these things display that
+		if(canBreakBranches) {	horns.SetActive(true);}
+		if(canDoubleJump) {	wings.SetActive(true);}
 	}
 
 	public bool canBreak()
@@ -31,5 +37,12 @@ public class PlayerProgression : MonoBehaviour
 	public Transform getStartPosition()
 	{
 		return startPosition;
+	}
+
+	public void activateWings()
+	{
+		canDoubleJump = true;
+		GetComponent<PlayerMovement>().growWings();
+		wings.SetActive(true);
 	}
 }

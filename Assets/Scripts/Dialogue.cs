@@ -107,7 +107,6 @@ public class Dialogue : MonoBehaviour
 		}
 		#endregion
 
-		Debug.Log("Speaking...");
 		//if (PauseManager.isPaused) { return; }
 		if (currentMessage == message && currentlyTyping) // if we are trying to say something that is already being said finish it
 		{
