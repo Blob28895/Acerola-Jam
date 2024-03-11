@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private ParticleSystem groundParticles;
 	[SerializeField] private ParticleSystem wallParticles;
 	[SerializeField] private Collider2D playerCollider;
-	[SerializeField] private Animator animator;
+	[SerializeField] public Animator animator;
 
 
 	private void Awake()
@@ -358,4 +358,6 @@ public class PlayerMovement : MonoBehaviour
 		animator.SetTrigger("EndWings");
 		canMove = true;
 	}
+
+	
 }
