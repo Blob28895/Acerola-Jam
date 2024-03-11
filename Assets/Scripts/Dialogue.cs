@@ -180,6 +180,7 @@ public class Dialogue : MonoBehaviour
 		if(SceneManager.GetActiveScene().name == "Level 4")
 		{
 			GetComponent<ReverseRun>().StartReverseRun();
+			//GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().growWings();
 		}
 
 	}

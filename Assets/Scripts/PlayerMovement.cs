@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.XR;
@@ -160,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
 		if (jumpReleased && rb.velocity.y > 0.01f)
 		{//Actual jump release slow within FixedUpdate to make sure that the slow is consistent across different frame rates
 			rb.velocity = new Vector2 (rb.velocity.x, rb.velocity.y / jumpReleaseSlow);
-			Debug.Log(midairJumpsAvailable + ":slowing");
+			//Debug.Log(midairJumpsAvailable + ":slowing");
 		}
 
 		if (!isWallJumping)
@@ -345,5 +346,16 @@ public class PlayerMovement : MonoBehaviour
 		midairJumps = 1;
 		midairJumpsAvailable = 1;
 		PlayerProgression.canDoubleJump = true;
+		canMove = false;
+		StartCoroutine(growWingsAnimation());
+	}
+
+	public IEnumerator growWingsAnimation()
+	{
+		Debug.Log("Growing Wings");
+		animator.SetTrigger("GrowWings");
+		yield return new WaitForSeconds(0.8f);
+		animator.SetTrigger("EndWings");
+		canMove = true;
 	}
 }

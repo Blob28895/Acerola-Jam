@@ -22,7 +22,7 @@ public class PlayerProgression : MonoBehaviour
 			canBreakBranches = true; //This variable starts as false and will just become true when you start level 3
 		}
 		startPosition = GameObject.FindGameObjectWithTag("Spawn").transform;
-		Debug.Log(startPosition);
+		//Debug.Log(startPosition);
 
 		//If we have unlocked either of these things display that
 		if(canBreakBranches) {	horns.SetActive(true);}
@@ -42,7 +42,8 @@ public class PlayerProgression : MonoBehaviour
 	public void activateWings()
 	{
 		canDoubleJump = true;
-		GetComponent<PlayerMovement>().growWings();
 		wings.SetActive(true);
+		GetComponent<PlayerMovement>().growWings();
+		
 	}
 }
