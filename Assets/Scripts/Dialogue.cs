@@ -32,6 +32,7 @@ public class Dialogue : MonoBehaviour
 	private bool isTalking = false;
 	private bool dialogueFinished = false; //Im putting this in here for my Acerola jam submission but if you ever want to be able to talk to something multiple times without reloading the scene this will break it
 	private PlayerMovement player;
+	private int lastEnemyLineIndex = -1;
 
 	[Header("References")]
 	[SerializeField] private ParticleSystem particles;
@@ -77,6 +78,16 @@ public class Dialogue : MonoBehaviour
 	private void Awake()
 	{
 		particles.Stop();
+		if (lines.Length > 0)
+		{
+			for(int i = 0; i < lines.Length; ++i)
+			{
+				if (lines[i].speaker == Speaker.enemy)
+				{
+					lastEnemyLineIndex = i;
+				}
+			}
+		}
 	}
 
 	// Start is called before the first frame update
@@ -125,6 +136,10 @@ public class Dialogue : MonoBehaviour
 			}
 			else
 			{
+				if(currentLine == lastEnemyLineIndex)
+				{
+					StartCoroutine(flee());
+				}
 				currentLine++;
 				Speak(lines[currentLine]);
 			}
@@ -174,7 +189,7 @@ public class Dialogue : MonoBehaviour
 		speakerMessage.text = "";
 		isTalking = false;
 		dialogueFinished = true;
-		StartCoroutine(flee());
+		//StartCoroutine(flee());
 
 		//This if statement and function is specific to "Where?"
 		if(SceneManager.GetActiveScene().name == "Level 4")
@@ -191,7 +206,7 @@ public class Dialogue : MonoBehaviour
 		foreach (char letter in sentence.ToCharArray())
 		{
 			textDisplay.text += letter;
-			if(letter == '.')
+			if(letter == '.' || letter == '?')
 			{
 				yield return new WaitForSeconds(typingSpeed * 2);
 			}
