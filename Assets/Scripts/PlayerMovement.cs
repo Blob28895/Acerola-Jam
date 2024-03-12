@@ -85,9 +85,10 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
-		if (!canMove) { return; }
 		groundedLast = isGrounded;
 		boxCast();
+		animator.SetBool("Grounded", isGrounded);
+		if (!canMove) { return; }
 		if (!isGrounded && groundedLast)
 		{ //on walking off a ledge
 			coyoteJumpTimer = coyoteTime;
@@ -136,7 +137,6 @@ public class PlayerMovement : MonoBehaviour
 		}
 		animator.SetFloat("yVelocity", rb.velocity.y);
 		animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
-		animator.SetBool("Grounded", isGrounded);
 
 	}
 
