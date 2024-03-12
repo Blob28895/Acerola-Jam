@@ -147,12 +147,13 @@ public class PlayerMovement : MonoBehaviour
 		dashCountdown();
 
 		//Ground particles Code
-		if (isGrounded && rb.velocity != Vector2.zero)
+		if (isGrounded && rb.velocity.x > 0.01f)
 		{
 			groundParticles.emissionRate = groundEmissionRate;
 		}
 		else
 		{
+			Debug.Log("Deactivate running particles");
 			groundParticles.emissionRate = 0;
 		}
 
