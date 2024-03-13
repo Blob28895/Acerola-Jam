@@ -74278,7 +74278,7 @@ PrefabInstance:
       objectReference: {fileID: 536915594}
     - target: {fileID: 7218775411949072059, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
       propertyPath: lines.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7218775411949072059, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
       propertyPath: playerDialogueBox
@@ -74300,12 +74300,20 @@ PrefabInstance:
         I don\u2019t have time for this!"
       objectReference: {fileID: 0}
     - target: {fileID: 7218775411949072059, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: lines.Array.data[3].line
+      value: I need...to go...faster...
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218775411949072059, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
       propertyPath: lines.Array.data[0].speaker
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7218775411949072059, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
       propertyPath: lines.Array.data[1].speaker
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218775411949072059, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
+      propertyPath: lines.Array.data[3].speaker
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7395132767076270206, guid: 779082351c6427f4cbf9ce38a0306b73, type: 3}
       propertyPath: m_Name

@@ -178,7 +178,7 @@ public class Dialogue : MonoBehaviour
 		player.setCanMove(true);
 		if (speakerDialogueBox.activeInHierarchy)
 		{// this gets called when players leave the range of something they can interact with, so I dont want the sound to play if they just walk by without pulling up the dialogue box
-			//SoundManager.PlaySound(SoundManager.Sound.DialogueSound);
+		 //SoundManager.PlaySound(SoundManager.Sound.DialogueSound);
 		}
 		speakerDialogueBox.SetActive(false);
 		if (currentlyTyping)
@@ -192,14 +192,18 @@ public class Dialogue : MonoBehaviour
 		//StartCoroutine(flee());
 
 		//This if statement and function is specific to "Where?"
-		if(SceneManager.GetActiveScene().name == "Level 4")
+		if (SceneManager.GetActiveScene().name == "Level 4")
 		{
 			GetComponent<ReverseRun>().StartReverseRun();
 			//GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().growWings();
 		}
-
+		if (SceneManager.GetActiveScene().name == "Level 1" && PlayerProgression.canDoubleJump)
+		{
+			Debug.Log("Getting in here");
+			endGame();
+		}
 	}
-	IEnumerator Type(TextMeshProUGUI textDisplay, string sentence)
+		IEnumerator Type(TextMeshProUGUI textDisplay, string sentence)
 	{
 		currentlyTyping = true;
 		currentMessage = sentence;
@@ -235,5 +239,10 @@ public class Dialogue : MonoBehaviour
 		spriteRenderer.enabled = false;
 		yield return new WaitForSeconds(0.5f);
 		particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+	}
+
+	private void endGame()
+	{
+		GameObject.FindGameObjectWithTag("Canvas").GetComponent<MainMenu>().fadeBackToMainMenu();
 	}
 }

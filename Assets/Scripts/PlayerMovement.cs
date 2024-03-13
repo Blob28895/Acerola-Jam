@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("Deactivate running particles");
+			//Debug.Log("Deactivate running particles");
 			groundParticles.emissionRate = 0;
 		}
 
