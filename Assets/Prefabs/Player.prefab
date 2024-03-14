@@ -9868,7 +9868,8 @@ GameObject:
   - component: {fileID: 1415076198225104467}
   - component: {fileID: 3506347200411196732}
   - component: {fileID: 31570174708275813}
-  m_Layer: 0
+  - component: {fileID: 4024750559668032350}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -9986,6 +9987,7 @@ MonoBehaviour:
   wallParticles: {fileID: 7714884615260540559}
   playerCollider: {fileID: 5121288919561878439}
   animator: {fileID: 1415076198225104467}
+  JumpSound: {fileID: 8300000, guid: 5e373f21ee383784bbeaecddcf9da8a9, type: 3}
 --- !u!50 &4879035566624855202
 Rigidbody2D:
   serializedVersion: 4
@@ -10106,6 +10108,20 @@ MonoBehaviour:
   playerMovement: {fileID: 8447484967924412041}
   horns: {fileID: 4025967903844630363}
   wings: {fileID: 8030844306656337884}
+--- !u!114 &4024750559668032350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6508764947282598306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709dfcd17b74c6a45b78fe17ef717098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  soundEffectObject: {fileID: 4220867417167717694, guid: 961416ca219002945b789ef7d0977154, type: 3}
 --- !u!1 &8030844306656337884
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private ParticleSystem wallParticles;
 	[SerializeField] private Collider2D playerCollider;
 	[SerializeField] public Animator animator;
+	[SerializeField] public AudioClip JumpSound;
 
 
 	private void Awake()
@@ -109,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 		if (Input.GetButtonDown("Jump") && canJump())
 		{
 			//Debug.Log("Jump");
+			GetComponent<AudioController>().playSoundScript(JumpSound, 1f);
 			rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 			jumpReleased = false;
 
@@ -231,6 +233,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
 		{
+			GetComponent<AudioController>().playSoundScript(JumpSound, 1f);
 			isWallJumping = true;
 			rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
 			wallJumpingCounter = 0f;

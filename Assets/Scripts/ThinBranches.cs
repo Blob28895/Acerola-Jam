@@ -29,6 +29,7 @@ public class ThinBranches : MonoBehaviour
 
 	private IEnumerator demolish()
 	{
+		GetComponent<AudioSource>().Play();
 		spriteRenderer.enabled = false;
 		particles.Play();
 		spriteRenderer.enabled = false;
