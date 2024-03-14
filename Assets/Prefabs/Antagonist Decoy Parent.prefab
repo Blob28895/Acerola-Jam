@@ -5018,6 +5018,7 @@ MonoBehaviour:
   playerMessage: {fileID: 0}
   enemyDialogueBox: {fileID: 0}
   enemyMessage: {fileID: 0}
+  dialogueSound: {fileID: 8300000, guid: ad7070fda6f18b04dab2fa107e3a8a56, type: 3}
   typingSpeed: 0.02
   lines:
   - speaker: 0

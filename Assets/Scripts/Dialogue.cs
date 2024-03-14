@@ -33,6 +33,7 @@ public class Dialogue : MonoBehaviour
 	private bool dialogueFinished = false; //Im putting this in here for my Acerola jam submission but if you ever want to be able to talk to something multiple times without reloading the scene this will break it
 	private PlayerMovement player;
 	private int lastEnemyLineIndex = -1;
+	private AudioController ac;
 
 	[Header("References")]
 	[SerializeField] private ParticleSystem particles;
@@ -41,6 +42,7 @@ public class Dialogue : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI playerMessage;
 	[SerializeField] private GameObject enemyDialogueBox;
 	[SerializeField] private TextMeshProUGUI enemyMessage;
+	[SerializeField] private AudioClip dialogueSound;
 
 	[Header("Dialogue Content")]
 	[Tooltip("Time in seconds between each character appearing on the screen. The character after a period will come out at double this speed.")]
@@ -72,11 +74,13 @@ public class Dialogue : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			nextLine();
+			ac.playSoundScript(dialogueSound, 0.1f);
 		}
 	}
 
 	private void Awake()
 	{
+		ac = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioController>();
 		particles.Stop();
 		if (lines.Length > 0)
 		{
