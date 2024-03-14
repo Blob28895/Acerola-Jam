@@ -992,6 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa0b86e7462ac64aa9379838491f0b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeObject: {fileID: 0}
 --- !u!1 &954472415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,6 +1224,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151574309}
   m_CullTransparentMesh: 1
+--- !u!1001 &1287370008
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 615219806198708293, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.09966844
+      objectReference: {fileID: 0}
+    - target: {fileID: 615219806198708293, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.021238
+      objectReference: {fileID: 0}
+    - target: {fileID: 615219806198708293, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.07607608
+      objectReference: {fileID: 0}
+    - target: {fileID: 615219806198708293, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615219806198708293, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615219806198708293, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615219806198708293, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615219806198708293, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615219806198708293, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615219806198708293, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2144013957990269794, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
+      propertyPath: m_Name
+      value: Music
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1ab1322fc1d40646b3aeacd6b632ced, type: 3}
 --- !u!1 &1363997060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,3 +1994,4 @@ SceneRoots:
   - {fileID: 322863449}
   - {fileID: 2057283994}
   - {fileID: 229170983}
+  - {fileID: 1287370008}

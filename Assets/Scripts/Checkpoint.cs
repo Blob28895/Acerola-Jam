@@ -31,6 +31,7 @@ public class Checkpoint : MonoBehaviour
 	{
 		if(!activated)
 		{
+			GetComponent<AudioSource>().Play();
 			activated = true;
 			animator.SetTrigger("Activate");
 			StartCoroutine(activateParticles());
